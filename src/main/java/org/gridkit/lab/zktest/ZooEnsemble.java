@@ -23,7 +23,6 @@ import org.apache.zookeeper.server.quorum.QuorumPeerConfig;
 import org.apache.zookeeper.server.quorum.QuorumPeerConfig.ConfigException;
 import org.gridkit.vicluster.ViGroup;
 import org.gridkit.vicluster.ViNode;
-import org.gridkit.vicluster.VoidCallable;
 
 public class ZooEnsemble {
 
@@ -115,9 +114,9 @@ public class ZooEnsemble {
 	}
 
 	@SuppressWarnings("serial")
-	static class ZooStarter implements VoidCallable, Serializable {
+	static class ZooStarter implements Callable<Void>, Serializable {
 		@Override
-		public void call() throws IOException, ConfigException, InterruptedException {
+		public Void call() throws IOException, ConfigException, InterruptedException {
 			
 			String id = System.getProperty("vi-zookeeper.myid");
 			String baseDir = System.getProperty("vi-zookeeper.baseDataDir", "");
@@ -146,6 +145,8 @@ public class ZooEnsemble {
 			QuorumPeerConfig qpc = new QuorumPeerConfig();
 			qpc.parseProperties(props);
 			startPeer(qpc);
+			
+			return null;
 		}
 
 		private void startPeer(QuorumPeerConfig config) throws IOException, InterruptedException {

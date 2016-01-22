@@ -8,25 +8,9 @@
 
     <name>Nimble: ZooKeeper benchmark sample</name>
 
-    <repositories>
-        <!-- GridKit public maven repository -->
-        <repository>
-            <id>gridkit-releases</id>
-            <name>gridkit-repo.googlecode.com</name>
-            <url>http://gridkit.googlecode.com/svn/repo/</url>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    
     <properties>
-        <nanocloud.version>0.7.23</nanocloud.version>
-        <nimble.version>0.2.2</nimble.version>
+        <nanocloud.version>0.8.10</nanocloud.version>
+        <nimble.version>0.2.4</nimble.version>
     </properties>
     
     <dependencies>
@@ -41,12 +25,28 @@
             <groupId>org.gridkit.lab</groupId>
             <artifactId>nimble-core</artifactId>
             <version>${nimble.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.gridkit.lab</groupId>
+                    <artifactId>telecontrol-ssh</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.gridkit.lab</groupId>
+                    <artifactId>viconcurrent</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.gridkit.lab</groupId>
             <artifactId>probe-sigar</artifactId>
             <version>${nimble.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.gridkit.lab</groupId>
+                    <artifactId>viconcurrent</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -78,6 +78,7 @@
             </exclusions>
         </dependency>
 
+<!-- 
         <dependency>
             <groupId>org.apache.cassandra</groupId>
             <artifactId>cassandra-all</artifactId>
@@ -93,6 +94,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+ -->
         
         <dependency>
             <groupId>org.slf4j</groupId>

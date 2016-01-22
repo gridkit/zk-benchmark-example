@@ -6,15 +6,15 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.gridkit.lab.zktest.ZkBench.ZkBenchConfig;
+import org.gridkit.nanocloud.Cloud;
 import org.gridkit.nanocloud.CloudFactory;
-import org.gridkit.vicluster.ViManager;
 import org.gridkit.vicluster.ViProps;
 import org.junit.After;
 import org.junit.Test;
 
 public class ZkBenchRun {
 
-	private ViManager cloud = CloudFactory.createCloud();
+	private Cloud cloud = CloudFactory.createCloud();
 	{
 		ViProps.at(cloud.node("**")).setLocalType();
 	}
